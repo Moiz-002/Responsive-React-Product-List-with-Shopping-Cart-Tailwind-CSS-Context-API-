@@ -1,14 +1,57 @@
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { cartContext } from "../cartContext";
-import { useContext } from "react";
 
 const OrderConfirm = ({ setConfirm }) => {
   const { cart, emptyCart } = useContext(cartContext);
 
-  function EmptyCart() {
+  // clear cart and close modal
+  function handleStartNewOrder() {
     emptyCart();
     setConfirm(false);
   }
+
+  // Accessibility: trap focus inside the modal while open and close on Escape/backdrop click
+  const modalRef = useRef(null);
+  useEffect(() => {
+    const previous = document.activeElement;
+
+    // focus the modal container
+    const node = modalRef.current;
+    if (node) {
+      node.focus();
+    }
+
+    function onKeyDown(e) {
+      // close on Escape
+      if (e.key === "Escape") {
+        setConfirm(false);
+      }
+
+      // trap focus
+      const focusable = node.querySelectorAll(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (e.key === "Tab" && focusable.length) {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      // restore previous focus
+      if (previous && previous.focus) previous.focus();
+    };
+  }, [setConfirm]);
 
   return (
     <div
@@ -16,6 +59,12 @@ const OrderConfirm = ({ setConfirm }) => {
       role="dialog"
       aria-modal="true"
       aria-labelledby="order-confirm-title"
+      onClick={(e) => {
+        // close when clicking backdrop (but not when clicking inside the modal)
+        if (e.target === e.currentTarget) {
+          setConfirm(false);
+        }
+      }}
     >
       {/* Background overlay */}
       <div
@@ -24,11 +73,16 @@ const OrderConfirm = ({ setConfirm }) => {
       ></div>
 
       {/* Modal box */}
-      <div className="w-full bg-white rounded-t-2xl p-6 sm:absolute sm:left-1/2 sm:top-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-[560px] shadow-xl z-20 flex flex-col gap-6">
+      <div
+        ref={modalRef}
+        tabIndex={-1}
+        className="w-full bg-white rounded-t-2xl p-6 sm:absolute sm:left-1/2 sm:top-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-[560px] shadow-xl z-20 flex flex-col gap-6"
+      >
+
         {/* Modal Header */}
         <div className="flex items-start flex-col gap-6">
           <img
-            src="src/assets/images/icon-order-confirmed.svg"
+            src="../assets/images/icon-order-confirmed.svg"
             alt="Order confirmed icon"
           />
 
@@ -46,20 +100,15 @@ const OrderConfirm = ({ setConfirm }) => {
           <div className="p-6 max-h-50 overflow-scroll" role="list">
             {cart.map((item) => (
               <React.Fragment key={item.category}>
-                <div
-                  className="flex items-center justify-between"
-                  role="listitem"
-                >
+                <div className="flex items-center justify-between" role="listitem">
                   <div className="flex items-center gap-5">
-                    <img
+                      <img
                       className="w-15 h-15 rounded-lg"
-                      src={`src/assets/images/${item.image.thumbnail}`}
+                      src={`../assets/images/${item.image.thumbnail}`}
                       alt={item.name}
                     />
                     <div className="flex flex-col gap-2">
-                      <h3 className="text-product font-semibold">
-                        {item.name}
-                      </h3>
+                      <h3 className="text-product font-semibold">{item.name}</h3>
 
                       <div className="flex gap-4">
                         <span className="text-rose-800 font-semibold">
@@ -93,7 +142,10 @@ const OrderConfirm = ({ setConfirm }) => {
                 aria-atomic="true"
               >
                 $
-                {cart.reduce((total, item) => total + item.price * item.qty, 0)}
+                {cart.reduce(
+                  (total, item) => total + item.price * item.qty,
+                  0
+                )}
               </h4>
             </div>
           </div>
@@ -103,7 +155,7 @@ const OrderConfirm = ({ setConfirm }) => {
         <button
           type="button"
           className="w-full text-white bg-red-700 active:bg-red-900 py-4 rounded-full cursor-pointer"
-          onClick={EmptyCart}
+          onClick={handleStartNewOrder}
           aria-label="Start a new order"
         >
           Start New Order

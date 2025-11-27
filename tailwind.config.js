@@ -11,6 +11,8 @@ export default {
       },
       colors: {
         red: 'hsl(14, 86%, 42%)',
+        /* custom color requested by user */
+        accent: 'hsl(61, 74%, 74%)',
         green: 'hsl(159, 69%, 38%)',
         rose: {
           50: 'hsl(20, 50%, 98%)',

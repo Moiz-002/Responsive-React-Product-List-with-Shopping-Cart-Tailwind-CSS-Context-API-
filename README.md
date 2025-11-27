@@ -98,3 +98,21 @@ We love receiving feedback! We're always looking to improve our challenges and o
 This challenge is completely free. Please share it with anyone who will find it useful for practice.
 
 **Have fun building!** 🚀
+
+---
+
+### Custom Tailwind color added
+
+I added a custom color utility named `accent` to this project's `tailwind.config.js` (value: hsl(61, 74%, 74%)).
+
+Use it like:
+
+```html
+<!-- Background -->
+<div class="bg-accent p-4">...</div>
+
+<!-- Text -->
+<p class="text-accent">Colored text</p>
+```
+
+Tailwind will generate utilities like `bg-accent`, `text-accent`, `border-accent`, etc. If you rely on purging in production, make sure the classes appear in your source files or add them to the `safelist` in `tailwind.config.js`.
