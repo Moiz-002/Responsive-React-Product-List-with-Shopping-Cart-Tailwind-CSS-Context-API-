@@ -42,7 +42,7 @@ const Product = ({ image, name, category, price }) => {
           >
             <button
               type="button"
-              className="group border border-white p-1.5 rounded-full active:bg-white"
+              className="group border border-white p-1.5 rounded-full active:bg-white cursor-pointer"
               onClick={() => increaseQuantity(category)}
               aria-label={`Increase quantity of ${name}`}
             >
@@ -56,7 +56,7 @@ const Product = ({ image, name, category, price }) => {
 
             <button
               type="button"
-              className="group border border-white p-1.5 rounded-full active:bg-white"
+              className="group border border-white p-1.5 rounded-full active:bg-white cursor-pointer"
               onClick={() => decreaseQuantity(category)}
               aria-label={`Decrease quantity of ${name}`}
             >
