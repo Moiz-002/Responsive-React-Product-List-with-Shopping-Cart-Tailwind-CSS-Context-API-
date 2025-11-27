@@ -4,7 +4,7 @@ const EmptyCart = () => {
   return (
     <div className='flex flex-col items-center justify-center gap-3 w-full sm:w-[350px]'>
       <img
-        src="src/assets/images/illustration-empty-cart.svg"
+        src="/images/illustration-empty-cart.svg"
         alt=""
         aria-hidden="true"
       />

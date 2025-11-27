@@ -104,7 +104,7 @@ const OrderConfirm = ({ setConfirm }) => {
                   <div className="flex items-center gap-5">
                       <img
                       className="w-15 h-15 rounded-lg"
-                      src={`../assets/images/${item.image.thumbnail}`}
+                      src={`/images/${item.image.thumbnail}`}
                       alt={item.name}
                     />
                     <div className="flex flex-col gap-2">

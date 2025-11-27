@@ -30,7 +30,7 @@ const CartWithItems = ({ item }) => {
           >
             <span
               aria-hidden="true"
-              className="w-4 h-4 block bg-amber-900 group-active:bg-black  mask-[url('/src/assets/images/icon-remove-item.svg')] mask-no-repeat mask-center mask-contain"
+              className="w-4 h-4 block bg-amber-900 group-active:bg-black  mask-[url('/images/icon-remove-item.svg')] mask-no-repeat mask-center mask-contain"
             ></span>
           </button>
         </div>

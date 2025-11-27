@@ -62,7 +62,7 @@ const Product = ({ image, name, category, price }) => {
             >
               <span
                 aria-hidden="true"
-                className="w-4 h-4 block bg-white group-active:bg-red-500 mask-[url('/src/assets/images/icon-decrement-quantity.svg')] mask-no-repeat mask-center mask-contain"
+                className="w-4 h-4 block bg-white group-active:bg-red-500 mask-[url('/images/icon-decrement-quantity.svg')] mask-no-repeat mask-center mask-contain"
               ></span>
             </button>
           </span>
@@ -72,7 +72,7 @@ const Product = ({ image, name, category, price }) => {
             type="button"
             onClick={() => addToCart(category)}
           >
-            <img src="src/assets/images/icon-add-to-cart.svg" alt="" aria-hidden="true" />
+            <img src="/images/icon-add-to-cart.svg" alt="" aria-hidden="true" />
             <p className="font-semibold">Add to Cart</p>
           </button>
         )}

@@ -41,7 +41,7 @@ const Cart = () => {
       </div>
 
       <div className="flex items-center justify-center gap-1.5 bg-rose-50 rounded-lg w-full py-3.5">
-        <img src="src/assets/images/icon-carbon-neutral.svg" alt="" aria-hidden="true" />
+        <img src="/images/icon-carbon-neutral.svg" alt="" aria-hidden="true" />
         <p className="text-sm font-medium">
           This is a <strong>carbon-neutral</strong> delivery
         </p>
