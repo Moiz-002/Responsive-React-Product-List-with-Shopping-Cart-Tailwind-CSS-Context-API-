@@ -48,7 +48,7 @@ const Product = ({ image, name, category, price }) => {
             >
               <span
                 aria-hidden="true"
-                className="w-4 h-4 block bg-white group-active:bg-red-500 mask-[url('/src/assets/images/icon-increment-quantity.svg')] mask-no-repeat mask-center mask-contain"
+                className="w-4 h-4 block bg-white group-active:bg-red-500 mask-[url('/images/icon-increment-quantity.svg')] mask-no-repeat mask-center mask-contain"
               ></span>
             </button>
 
