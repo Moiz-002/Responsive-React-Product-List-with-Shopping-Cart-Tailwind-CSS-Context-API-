@@ -21,15 +21,15 @@ const Product = ({ image, name, category, price }) => {
         >
           <source
             media="(min-width:1024px)"
-            srcSet={`/src/assets/images/${image.desktop}`}
+            srcSet={`../assets/images/${image.desktop}`}
           />
           <source
             media="(min-width:768px)"
-            srcSet={`/src/assets/images/${image.tablet}`}
+            srcSet={`../assets/images/${image.tablet}`}
           />
           <img
             className="rounded-xl"
-            src={`/src/assets/images/${image.mobile}`}
+            src={`../assets/images/${image.mobile}`}
             alt={name}
             loading="lazy"
           />
