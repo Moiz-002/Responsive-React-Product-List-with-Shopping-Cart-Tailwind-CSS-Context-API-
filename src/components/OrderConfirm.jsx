@@ -82,7 +82,7 @@ const OrderConfirm = ({ setConfirm }) => {
         {/* Modal Header */}
         <div className="flex items-start flex-col gap-6">
           <img
-            src="../assets/images/icon-order-confirmed.svg"
+            src="/images/icon-order-confirmed.svg"
             alt="Order confirmed icon"
           />
 
