@@ -10,7 +10,7 @@ const Product = ({ image, name, category, price }) => {
   return (
     <div
       className={
-        "max-w-full overflow-hidden flex flex-col items-center justify-center py-2 gap-2"
+        "overflow-hidden flex flex-col items-center justify-center py-2 gap-2 sm:max-w-sm"
       }
     >
       <div className="flex flex-col items-center justify-center">
